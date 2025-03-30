@@ -15,9 +15,11 @@ public class BankManagementSystem {
             System.out.println("3. Withdraw Money");
             System.out.println("4. Check Balance");
             System.out.println("5. Exit");
+            System.out.println();
             System.out.print("Enter your choice: ");
 
             int choice = inputUtils.readInt();
+            System.out.println();
 
             switch(choice) {
                 case 1:

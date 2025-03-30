@@ -13,17 +13,35 @@ public class BankService {
     }
 
     public void createAccount() {
-        System.out.println("Enter account number: ");
-        String accountNumber = inputUtils.readString();
-        // Check to see if account number already exists if so print message
+        String accountNumber;
+        boolean accountNumberExists;
 
-        System.out.println("Enter initial balance: ");
+        do {
+            System.out.print("Enter account number: ");
+            accountNumber = inputUtils.readString();
+            accountNumberExists = false;
+
+            for (BankAccount account : accounts) {
+                if (account.getAccountNumber().equals(accountNumber)) {
+                    System.out.println("Account number already exists. Please enter a different number.");
+                    accountNumberExists = true;
+                    break;
+                }
+            }
+        } while (accountNumberExists);
+
+        System.out.println();
+
+
+        System.out.print("Enter initial balance: ");
         double balance = inputUtils.readDouble();
+        System.out.println();
 
         System.out.println("Select account type: ");
         System.out.println("1. Savings Account");
         System.out.println("2. Checking Account");
-        System.out.println("Enter your choice: ");
+        System.out.println();
+        System.out.print("Enter your choice: ");
         int accountType = inputUtils.readInt();
 
         switch (accountType) {
@@ -31,7 +49,7 @@ public class BankService {
                 accounts.add(new SavingsAccount(accountNumber, balance));
                 break;
             case 2:
-                System.out.println("Enter overdraft limit: ");
+                System.out.print("Enter overdraft limit: ");
                 double overdraftLimit = inputUtils.readDouble();
                 accounts.add(new CheckingAccount(accountNumber, balance, overdraftLimit));
                 break;
@@ -46,31 +64,40 @@ public class BankService {
     public void depositMoney() {
         BankAccount account = findAccount();
         if (account != null) {
-            System.out.println("Enter amount to deposit: ");
+            System.out.print("Enter amount to deposit: ");
             double amount = inputUtils.readDouble();
             account.deposit(amount);
+            System.out.println();
+        } else {
+            System.out.println("Account not found.");
         }
     }
 
     public void withdrawMoney() {
         BankAccount account = findAccount();
         if (account != null) {
-            System.out.println("Enter amount to withdraw: ");
+            System.out.print("Enter amount to withdraw: ");
             double amount = inputUtils.readDouble();
             account.withdraw(amount);
+        } else {
+            System.out.println("Account not found.");
         }
     }
 
     public void checkBalance() {
         BankAccount account = findAccount();
         if (account != null) {
-            System.out.println("Current balance: " + account.getBalance());
+            System.out.print("Current balance: " + account.getBalance());
+            System.out.println();
+        } else {
+            System.out.println("Account not found.");
         }
     }
 
     private BankAccount findAccount() {
-        System.out.println("Enter account number: ");
+        System.out.print("Enter account number: ");
         String accountNumber = inputUtils.readString();
+        System.out.println();
 
         for (BankAccount account: accounts) {
             if (account.getAccountNumber().equals(accountNumber)) {
@@ -78,8 +105,8 @@ public class BankService {
             }
         }
 
-        System.out.println("Account not found.");
         return null;
     }
+
 
 }
