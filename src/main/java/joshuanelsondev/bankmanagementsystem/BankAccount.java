@@ -1,7 +1,7 @@
 package joshuanelsondev.bankmanagementsystem;
 
 public abstract class BankAccount {
-    private String accountNumber;
+    private final String accountNumber;
     private double balance;
 
     public BankAccount(String accountNumber, double balance) {
