@@ -15,6 +15,8 @@ public class BankService {
     public void createAccount() {
         System.out.println("Enter account number: ");
         String accountNumber = inputUtils.readString();
+        // Check to see if account number already exists if so print message
+
         System.out.println("Enter initial balance: ");
         double balance = inputUtils.readDouble();
 
