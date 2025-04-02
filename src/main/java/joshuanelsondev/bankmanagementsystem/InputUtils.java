@@ -8,29 +8,21 @@ public class InputUtils {
         this.scanner = new Scanner(System.in);
     }
 
+    public Scanner createScannerFromString(String input) {
+        return new Scanner(input);
+    }
+
     public String readString() {
-        return scanner.nextLine();
+        String text = scanner.nextLine();
+        System.out.println(text);
+        return text;
     }
 
     public int readInt() {
-        while(!scanner.hasNext()) {
-            System.out.println("Invalid input. Please enter a number: ");
-            scanner.next();
-        }
-
-        int value = scanner.nextInt();
-        scanner.nextLine();
-        return value;
+       return scanner.nextInt();
     }
 
     public double readDouble() {
-        while(!scanner.hasNextDouble()) {
-            System.out.println("Invalid input. Please enter a number: ");
-            scanner.next();
-        }
-
-        double value = scanner.nextDouble();
-        scanner.nextLine();
-        return value;
+        return scanner.nextDouble();
     }
 }

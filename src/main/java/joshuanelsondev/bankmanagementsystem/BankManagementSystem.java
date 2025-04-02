@@ -1,10 +1,10 @@
 package joshuanelsondev.bankmanagementsystem;
 
 public class BankManagementSystem {
+
     public static void main(String[] args) {
-        System.out.println("Bank Management System");
-        BankService bankService = new BankService();
         InputUtils inputUtils = new InputUtils();
+        BankService bankService = new BankService(inputUtils);
 
         boolean exit = false;
 
@@ -19,10 +19,11 @@ public class BankManagementSystem {
             System.out.print("Enter your choice: ");
 
             int choice = inputUtils.readInt();
-            System.out.println();
+
 
             switch(choice) {
                 case 1:
+                    String strChoice = inputUtils.readString();
                     bankService.createAccount();
                     break;
                 case 2:

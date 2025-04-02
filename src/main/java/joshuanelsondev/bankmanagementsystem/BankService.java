@@ -2,14 +2,15 @@ package joshuanelsondev.bankmanagementsystem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class BankService {
     private final List<BankAccount> accounts;
     private final InputUtils inputUtils;
 
-    public BankService() {
+    public BankService(InputUtils inputUtils) {
         this.accounts = new ArrayList<>();
-        this.inputUtils = new InputUtils();
+        this.inputUtils = inputUtils;
     }
 
     public void createAccount() {
@@ -18,7 +19,13 @@ public class BankService {
 
         do {
             System.out.print("Enter account number: ");
-            accountNumber = inputUtils.readString();
+            System.out.println(inputUtils);
+            try {
+                accountNumber = inputUtils.readString();
+            } catch (NoSuchElementException e) {
+                System.out.println("Invalid input. Please try again.");
+                return;
+            }
             accountNumberExists = false;
 
             for (BankAccount account : accounts) {
@@ -34,7 +41,13 @@ public class BankService {
 
 
         System.out.print("Enter initial balance: ");
-        double balance = inputUtils.readDouble();
+        double balance;
+        try {
+            balance = inputUtils.readDouble();
+        } catch (NoSuchElementException e) {
+            System.out.println("Invalid input. Please try again.");
+            return;
+        }
         System.out.println();
 
         System.out.println("Select account type: ");
@@ -42,7 +55,14 @@ public class BankService {
         System.out.println("2. Checking Account");
         System.out.println();
         System.out.print("Enter your choice: ");
-        int accountType = inputUtils.readInt();
+        int accountType;
+        try {
+            accountType = inputUtils.readInt();
+        } catch (NoSuchElementException e) {
+            System.out.println("Invalid input. Please try again.");
+            return;
+        }
+
 
         switch (accountType) {
             case 1:
@@ -50,7 +70,13 @@ public class BankService {
                 break;
             case 2:
                 System.out.print("Enter overdraft limit: ");
-                double overdraftLimit = inputUtils.readDouble();
+                double overdraftLimit;
+                try {
+                    overdraftLimit = inputUtils.readDouble();
+                } catch (NoSuchElementException e) {
+                    System.out.println("Invalid input. Please try again.");
+                    return;
+                }
                 accounts.add(new CheckingAccount(accountNumber, balance, overdraftLimit));
                 break;
             default:
@@ -65,7 +91,13 @@ public class BankService {
         BankAccount account = findAccount();
         if (account != null) {
             System.out.print("Enter amount to deposit: ");
-            double amount = inputUtils.readDouble();
+            double amount;
+            try {
+                amount = inputUtils.readDouble();
+            } catch (NoSuchElementException e) {
+                System.out.println("Invalid input. Please try again.");
+                return;
+            }
             account.deposit(amount);
             System.out.println();
         } else {
@@ -77,7 +109,13 @@ public class BankService {
         BankAccount account = findAccount();
         if (account != null) {
             System.out.print("Enter amount to withdraw: ");
-            double amount = inputUtils.readDouble();
+            double amount;
+            try {
+                amount = inputUtils.readDouble();
+            } catch (NoSuchElementException e) {
+                System.out.println("Invalid input. Please try again.");
+                return;
+            }
             account.withdraw(amount);
         } else {
             System.out.println("Account not found.");
@@ -96,7 +134,13 @@ public class BankService {
 
     private BankAccount findAccount() {
         System.out.print("Enter account number: ");
-        String accountNumber = inputUtils.readString();
+        String accountNumber;
+        try {
+            accountNumber = inputUtils.readString();
+        } catch (NoSuchElementException e) {
+            System.out.println("Invalid input. Please try again.");
+            return null;
+        }
         System.out.println();
 
         for (BankAccount account: accounts) {
