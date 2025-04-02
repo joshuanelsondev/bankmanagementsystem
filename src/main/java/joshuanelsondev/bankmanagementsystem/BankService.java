@@ -135,6 +135,7 @@ public class BankService {
     private BankAccount findAccount() {
         System.out.print("Enter account number: ");
         String accountNumber;
+        inputUtils.readString();
         try {
             accountNumber = inputUtils.readString();
         } catch (NoSuchElementException e) {

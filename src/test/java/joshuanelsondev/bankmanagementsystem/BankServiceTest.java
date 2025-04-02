@@ -39,13 +39,13 @@ public class BankServiceTest {
         assertTrue(getOutput().contains("Account created successfully."));
     }
 
-//    @Test
-//    public void testDepositMoneyFromMenu() {
-//        provideInput("1\n12345\n1000\n1\n2\n12345\n500\n5\n"); // create account, then deposit, then exit.
-//        BankManagementSystem.main(new String[]{});
-//        assertTrue(getOutput().contains("Deposited: 500.0"));
-//    }
-//
+    @Test
+    public void testDepositMoneyFromMenu() {
+        provideInput("1\n12345\n1000\n1\n2\n12345\n500\n5\n"); // create account, then deposit, then exit.
+        BankManagementSystem.main(new String[]{});
+        assertTrue(getOutput().contains("Deposited: 500.0"));
+    }
+
 //    @Test
 //    public void testWithdrawMoneyFromMenu() {
 //        provideInput("1\n12345\n1000\n1\n3\n12345\n200\n5\n");
