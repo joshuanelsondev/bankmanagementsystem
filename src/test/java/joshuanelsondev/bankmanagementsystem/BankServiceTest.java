@@ -46,27 +46,27 @@ public class BankServiceTest {
         assertTrue(getOutput().contains("Deposited: 500.0"));
     }
 
-//    @Test
-//    public void testWithdrawMoneyFromMenu() {
-//        provideInput("1\n12345\n1000\n1\n3\n12345\n200\n5\n");
-//        BankManagementSystem.main(new String[]{});
-//        assertTrue(getOutput().contains("Withdrawn: 200.0"));
-//    }
-//
-//    @Test
-//    public void testCheckBalanceFromMenu() {
-//        provideInput("1\n12345\n1000\n1\n4\n12345\n5\n");
-//        BankManagementSystem.main(new String[]{});
-//        assertTrue(getOutput().contains("Current balance: 1000.0"));
-//    }
-//
-//    @Test
-//    public void testInvalidMenuChoice() {
-//        provideInput("6\n5\n");
-//        BankManagementSystem.main(new String[]{});
-//        assertTrue(getOutput().contains("Invalid choice. Please try again."));
-//    }
-//
+    @Test
+    public void testWithdrawMoneyFromMenu() {
+        provideInput("1\n12345\n1000\n1\n3\n12345\n200\n5\n");
+        BankManagementSystem.main(new String[]{});
+        assertTrue(getOutput().contains("Withdrawing: 200.0"));
+    }
+
+    @Test
+    public void testCheckBalanceFromMenu() {
+        provideInput("1\n12345\n1000\n1\n4\n12345\n5\n");
+        BankManagementSystem.main(new String[]{});
+        assertTrue(getOutput().contains("Current balance: 1000.0"));
+    }
+
+    @Test
+    public void testInvalidMenuChoice() {
+        provideInput("6\n5\n");
+        BankManagementSystem.main(new String[]{});
+        assertTrue(getOutput().contains("Invalid choice. Please try again."));
+    }
+
 
     @org.junit.After
     public void restoreStreams() {
